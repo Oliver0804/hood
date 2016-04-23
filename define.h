@@ -1,5 +1,14 @@
 #ifndef _DEFINE_H
 #define _DEFINE_H
+
+#define MELEXISTEST_C
+#define __STDC_LIMIT_MACROS
+#define __STDC_CONSTANT_MACROS
+
+#define HMI_Serial Serial1
+#define ESP_Serial Serial2
+
+
 #define LED13  13
 #define s0  11
 #define s1  10

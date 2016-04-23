@@ -1,10 +1,3 @@
-//test ok123123123
-#define MELEXISTEST_C
-#define __STDC_LIMIT_MACROS
-#define __STDC_CONSTANT_MACROS
-
-#define HMI_Serial Serial1
-#define ESP_Serial Serial2
 
 #include <Arduino.h>
 #include <Wire.h>
@@ -51,11 +44,11 @@ void setup(void) {
   HMI_CMD("rest");
   HMI_CMD("rest");
   delay(1000);
-/*
-  Serial2.print("PandoraBox_4ED15A$"); delay(100);
-  Serial2.print("0982983012%"); delay(100);
-  Serial2.print("^");
-*/
+  /*
+    Serial2.print("PandoraBox_4ED15A$"); delay(100);
+    Serial2.print("0982983012%"); delay(100);
+    Serial2.print("^");
+  */
   Serial.print("ok");
   delay(3000);
   while (ESP_Serial.available() > 0) {
@@ -63,7 +56,7 @@ void setup(void) {
     Serial.print(s);
   }
   //Serial2.print("&");
-  
+
 }
 
 /*********************************************************************************************/
@@ -71,7 +64,7 @@ void setup(void) {
 /*********************************************************************************************/
 
 void loop(void) {
-HMI_TEMP_MAX();
+  HMI_TEMP_MAX();
   esp8266_buff_count = 0;
   while (ESP_Serial.available() > 0) {
     esp8266_buff[esp8266_buff_count] = (char)ESP_Serial.read();
@@ -103,7 +96,7 @@ HMI_TEMP_MAX();
   }
   read_data2buff();//將讀出的溫度放入Buff
   HMI_SEND_TEMP();
-  if (wifi_connect== 0) {
+  if (0 == 0) {
     sprintf(hmiTemp, "@%02d,%02d,%02d,%02d,", temp_1, temp_2, temp_3, temp_4);
     ESP_Serial.println(hmiTemp);
     delay(1000);

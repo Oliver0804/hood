@@ -13,6 +13,7 @@ void HMI_TEMP_MAX() {
       sprintf(hmiTemp, "@%02d,%02d,%02d,%02d,", temp_1, temp_2, temp_3, temp_4);
       ESP_Serial.println(hmiTemp);
       for (int x = 0; x < 10; x++) {
+      HMI_SEND_TEMP();
         tone(Buzz, 770);
         delay(250);
         tone(Buzz, 440);
@@ -31,6 +32,7 @@ void HMI_TEMP_MAX() {
       sprintf(hmiTemp, "@%02d,%02d,%02d,%02d,", temp_1, temp_2, temp_3, temp_4);
       ESP_Serial.println(hmiTemp);
       for (int x = 0; x < 5; x++) {
+      HMI_SEND_TEMP();
         tone(Buzz, 770);
         delay(500);
         tone(Buzz, 440);
@@ -88,13 +90,13 @@ void HMI_MSG() {
           Serial.print(rx_buff[n + 3]); Serial.print(",");
           Serial.print(rx_buff[n + 7]);
           Serial.println();
-          if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 9 ) {
+          if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 5 ) {
             Serial.println("Set SSID");
             mode = "SSID";
             HMI_CMD("page 2");
             HMI_CMD("t1.txt=\"SSID\"");
           }
-          if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 10 ) {
+          if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 6 ) {
             Serial.println("Set PASSWORD");
             mode = "PASSWORD";
             HMI_CMD("page 2");
@@ -130,7 +132,7 @@ void HMI_MSG() {
           }
 
         }
-        if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 7 ) {
+        if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 21 ) {
 
           ESP_Serial.print("^");
           delay(1000);
@@ -155,7 +157,7 @@ void HMI_MSG() {
           Serial.println(rx_buff[n + 7]);
           digitalWrite(Bottom_Light, ! rx_buff[n + 7]);
         }
-        if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 15 ) {
+        if (rx_buff[n + 1] == 0 && rx_buff[n + 2] == 12 ) {
           Serial.print("Fan  :");
           Serial.println(rx_buff[n + 7]);
           digitalWrite(Fan, !rx_buff[n + 7]);
