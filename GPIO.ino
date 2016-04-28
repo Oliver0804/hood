@@ -11,7 +11,7 @@ void GPIO_INIT() {
   digitalWrite(s2, LOW);
   digitalWrite(s3, LOW);
   digitalWrite(Buzz, LOW);
-  
+
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
 
@@ -29,6 +29,14 @@ void GPIO_INIT() {
   digitalWrite(esp8266_ret, HIGH);
 }
 
+//置能開關
+void check_bottom() {
+  if (digitalRead(Top_Light) == HIGH || digitalRead(Bottom_Light) == HIGH || digitalRead(Fan) == HIGH) {
+    HMI_CMD("vis ,1");
+  } else {
+    HMI_CMD("vis ,0");
+  }
+}
 void read_1() {
   digitalWrite(s0, HIGH);
   digitalWrite(s1, LOW);
